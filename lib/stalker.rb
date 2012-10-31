@@ -52,9 +52,9 @@ module Stalker
 
     jobs.each { |job| beanstalk.watch(job) }
 
-    beanstalk.list_tubes_watched.each do |server, tubes|
-      tubes.each { |tube| beanstalk.ignore(tube) unless jobs.include?(tube) }
-    end
+    #beanstalk.list_tubes_watched.each do |server, tubes|
+    #  tubes.each { |tube| beanstalk.ignore(tube) unless jobs.include?(tube) }
+    #end
   rescue Beanstalk::NotConnected => e
     failed_connection(e)
   end
@@ -73,18 +73,14 @@ module Stalker
     handler = @@handlers[name]
     raise(NoSuchJob, name) unless handler
 
-    begin
-      Timeout::timeout(job.ttr - 1) do
-        if defined? @@before_handlers and @@before_handlers.respond_to? :each
-          @@before_handlers.each do |block|
-            block.call(name)
-          end
-        end
-        handler.call(args)
+
+    if defined? @@before_handlers and @@before_handlers.respond_to? :each
+      @@before_handlers.each do |block|
+        block.call(name)
       end
-    rescue Timeout::Error
-      raise JobTimeout, "#{name} hit #{job.ttr-1}s timeout"
     end
+    handler.call(args)
+
 
     job.delete
     log_job_end(name)
@@ -140,7 +136,10 @@ module Stalker
   end
 
   def beanstalk
-    @@beanstalk ||= Beanstalk::Pool.new(beanstalk_addresses)
+    @@beanstalk ||= Beanstalk::Connection.new(beanstalk_addresses.first)
+    @@beanstalk.connect
+    @@beanstalk.put "oauth #{ENV['STALKER_TOKEN']} #{ENV['STALKER_PROJECT']}"
+    @@beanstalk
   end
 
   def beanstalk_url

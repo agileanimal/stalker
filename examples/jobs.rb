@@ -9,3 +9,7 @@ end
 job 'cleanup.strays' do |args|
   log "Cleaning up"
 end
+
+job 'default' do |args|
+  log "DEFAULT"
+end

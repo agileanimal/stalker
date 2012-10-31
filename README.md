@@ -1,5 +1,10 @@
-Stalker - a job queueing DSL for Beanstalk
+IronStalker - a job queueing DSL for Iron MQ
 ==========================================
+
+Iron MQ
+-------
+
+This port of stalker replaces Beanstalkd support with Iron MQ so that it runs nicely on heroku.
 
 [Beanstalkd](http://kr.github.com/beanstalkd/) is a fast, lightweight queueing backend inspired by mmemcached.  The [Ruby Beanstalk client](http://beanstalk.rubyforge.org/) is a bit raw, however, so Stalker provides a thin wrapper to make job queueing from your Ruby app easy and fun.
 
