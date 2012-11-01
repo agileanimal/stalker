@@ -6,7 +6,15 @@ Iron MQ
 
 This port of stalker replaces Beanstalkd support with Iron MQ so that it runs nicely on heroku.
 
-[Beanstalkd](http://kr.github.com/beanstalkd/) is a fast, lightweight queueing backend inspired by mmemcached.  The [Ruby Beanstalk client](http://beanstalk.rubyforge.org/) is a bit raw, however, so Stalker provides a thin wrapper to make job queueing from your Ruby app easy and fun.
+This is probably a bad idea, and at some point I need to go one level deeper and move the iron_mq support into the beanstalk gem and have it throw exceptions when unsupported methods are called. 
+
+_Use at your own risk._
+
+[Iron MQ](http://www.iron.io/products/mq) is a service that provides a subset of the beanstalkd protocol in a way that works with Heroku. Beanstalkd doesn't run on Heroku.
+
+[Beanstalkd](http://kr.github.com/beanstalkd/) is a fast, lightweight queueing backend inspired by mmemcached.  
+
+The [Ruby Beanstalk client](http://beanstalk.rubyforge.org/) is a bit raw, however, so Stalker provides a thin wrapper to make job queueing from your Ruby app easy and fun.
 
 Queueing jobs
 -------------

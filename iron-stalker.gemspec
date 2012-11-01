@@ -4,15 +4,15 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{iron-stalker}
+  s.name = "iron-stalker"
   s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Mark Madsen", "Adam Wiggins"]
-  s.date = %q{2012-10-31}
-  s.description = %q{A job queueing and background workers system using IronMQ.  Inspired by the Stalker gem.}
-  s.email = %q{gems@agileanimal.com}
-  s.executables = ["stalk"]
+  s.authors = ["Mark Madsen"]
+  s.date = "2012-11-01"
+  s.description = "A job queueing and background workers system using Iron MQ.  Inspired by the Stalker gem."
+  s.email = "gems@agileanimal.com"
+  s.executables = ["iron-stalk"]
   s.extra_rdoc_files = [
     "README.md"
   ]
@@ -21,23 +21,18 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "bin/iron-stalk",
-    "lib/stalker.rb"
+    "lib/iron_stalker.rb"
   ]
-  s.homepage = %q{https://github.com/agileanimal/stalker}
+  s.homepage = "https://github.com/agileanimal/stalker"
   s.require_paths = ["lib"]
-  s.rubyforge_project = %q{iron-stalker}
-  s.rubygems_version = %q{0.0.1}
-  s.summary = %q{A job queueing and background workers system using IronMQ.}
-  s.test_files = [
-    "examples/enqueue.rb",
-    "examples/jobs.rb",
-    "test/stalker_test.rb"
-  ]
+  s.rubyforge_project = "iron-stalker"
+  s.rubygems_version = "0.0.1"
+  s.summary = "A job queueing and background workers system using Iron MQ."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('0.0.1') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<iron_mq>, [">= 0"])
       s.add_runtime_dependency(%q<json_pure>, [">= 0"])
     else

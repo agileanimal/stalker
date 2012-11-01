@@ -2,8 +2,8 @@
 
 STDERR.sync = STDOUT.sync = true
 
-require File.expand_path('../../lib/stalker', __FILE__)
-extend Stalker
+require File.expand_path('../../lib/iron_stalker', __FILE__)
+extend IronStalker
 
 usage = "iron-stalk <jobs.rb> [<job>[,<job>,..]]"
 file = ARGV.shift or abort usage
@@ -18,4 +18,4 @@ trap('INT') do
 	exit
 end
 
-Stalker.work jobs
+IronStalker.work jobs

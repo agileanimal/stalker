@@ -3,7 +3,7 @@ require 'json'
 require 'uri'
 require 'timeout'
 
-module Stalker
+module IronStalker
   extend self
 
   def connect(url)
