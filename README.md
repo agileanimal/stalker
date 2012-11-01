@@ -10,6 +10,22 @@ This is probably a bad idea, and at some point I need to go one level deeper and
 
 _Use at your own risk._
 
+This gem expects 3 ENV variables to be present on Heroku:
+
+* ```BEANSTALK_URL```
+* ```IRON_MQ_PROJECT_ID```
+* ```IRON_MQ_TOKEN```
+
+The latter will be set by adding Iron MQ, the former you will need to add. As of the time of writing Iron MQ's BEANSTALK_URL for Heroku was:
+
+    beanstalk://mq-aws-us-east-1.iron.io:11300/
+
+So you should run something like
+
+    heroku config:add BEANSTALK_URL=beanstalk://mq-aws-us-east-1.iron.io:11300/
+
+___GOOD LUCK___
+
 [Iron MQ](http://www.iron.io/products/mq) is a service that provides a subset of the beanstalkd protocol in a way that works with Heroku. Beanstalkd doesn't run on Heroku.
 
 [Beanstalkd](http://kr.github.com/beanstalkd/) is a fast, lightweight queueing backend inspired by mmemcached.  
