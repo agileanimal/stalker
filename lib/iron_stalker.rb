@@ -138,7 +138,7 @@ module IronStalker
   def beanstalk
     @@beanstalk ||= Beanstalk::Connection.new(beanstalk_addresses.first)
     @@beanstalk.connect
-    @@beanstalk.put "oauth #{ENV['STALKER_TOKEN']} #{ENV['STALKER_PROJECT']}"
+    @@beanstalk.put "oauth #{ENV['STALKER_TOKEN'] || ENV['IRON_MQ_TOKEN']} #{ENV['STALKER_PROJECT'] || ENV['IRON_MQ_PROJECT_ID']}"
     @@beanstalk
   end
 

@@ -10,6 +10,7 @@ Jeweler::Tasks.new do |s|
 	s.executables = [ "iron-stalk" ]
 	s.rubyforge_project = "iron-stalker"
 
+	s.add_dependency 'beanstalk-client'
 	s.add_dependency 'iron_mq'
 	s.add_dependency 'json_pure'
 
