@@ -67,7 +67,8 @@ module IronStalker
   class JobTimeout < RuntimeError; end
 
   def work_one_job
-    job = beanstalk.reserve
+    job = beanstalk.reserve(45)
+    puts job.body
     name, args = JSON.parse job.body
     log_job_begin(name, args)
     handler = @@handlers[name]
@@ -84,6 +85,8 @@ module IronStalker
 
     job.delete
     log_job_end(name)
+  rescue Beanstalk::TimedOut => e
+    return
   rescue Beanstalk::NotConnected => e
     failed_connection(e)
   rescue SystemExit
